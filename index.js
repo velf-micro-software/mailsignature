@@ -3,6 +3,10 @@ const modal = document.getElementById("modal");
 const openModalBtn = document.getElementById("openModal");
 const closeModalBtn = document.getElementById("closeModal");
 const form = document.getElementById("signatureForm");
+const previewModal = document.getElementById("previewModal");
+const closePreviewModalBtn = document.getElementById("closePreviewModal");
+const downloadSignatureBtn = document.getElementById("downloadSignature");
+const signaturePreview = document.getElementById("signaturePreview");
 
 // Crear canvas para la firma
 const canvas = new fabric.Canvas("signatureCanvas", {
@@ -64,21 +68,36 @@ form.addEventListener("submit", (e) => {
     quality: 1,
   });
 
-  // Crear elemento de imagen para mostrar la firma
-  const signaturePreview = document.createElement("div");
-  signaturePreview.className = "mt-4 p-4 border rounded-lg";
+  // Mostrar la firma en el modal de vista previa
   signaturePreview.innerHTML = `
-    <h4 class="text-lg font-semibold mb-2">Tu firma generada:</h4>
     <img src="${signatureImage}" alt="Firma generada" class="max-w-full" />
-    <div class="mt-4">
-      <a href="${signatureImage}" download="mi-firma.png" 
-         class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition duration-300">
-        Descargar Firma
-      </a>
-    </div>
   `;
 
-  // Agregar la vista previa al modal
-  const modalContent = document.querySelector("#modal .bg-white");
-  modalContent.appendChild(signaturePreview);
+  // Configurar el botón de descarga
+  downloadSignatureBtn.onclick = () => {
+    const link = document.createElement("a");
+    link.href = signatureImage;
+    link.download = "mi-firma.png";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
+  // Mostrar el modal de vista previa
+  previewModal.classList.remove("hidden");
+  previewModal.classList.add("flex");
+});
+
+// Cerrar el modal de vista previa
+closePreviewModalBtn.addEventListener("click", () => {
+  previewModal.classList.add("hidden");
+  previewModal.classList.remove("flex");
+});
+
+// Cerrar el modal de vista previa al hacer clic fuera de él
+previewModal.addEventListener("click", (e) => {
+  if (e.target === previewModal) {
+    previewModal.classList.add("hidden");
+    previewModal.classList.remove("flex");
+  }
 });
