@@ -15,6 +15,18 @@ const canvas = new fabric.Canvas("signatureCanvas", {
   backgroundColor: "#ffffff",
 });
 
+// Manejo del checkbox de logo
+const logoCheckbox = document.getElementById("logoCheckbox");
+const logoInputContainer = document.getElementById("logoInputContainer");
+const logoInput = document.getElementById("logoInput");
+
+logoCheckbox.addEventListener("change", function () {
+  logoInputContainer.classList.toggle("hidden", !this.checked);
+  if (!this.checked) {
+    logoInput.value = ""; // Limpiar el input cuando se desmarca
+  }
+});
+
 openModalBtn.addEventListener("click", () => {
   modal.classList.remove("hidden");
   modal.classList.add("flex");
@@ -25,67 +37,70 @@ closeModalBtn.addEventListener("click", () => {
   modal.classList.remove("flex");
 });
 
-form.addEventListener("submit", (e) => {
+form.addEventListener("submit", async function (e) {
   e.preventDefault();
-  const formData = new FormData(form);
-  const data = Object.fromEntries(formData.entries());
 
-  // Limpiar el canvas
-  canvas.clear();
+  const nombre = document.getElementById("nombre").value;
+  const cargo = document.getElementById("cargo").value;
+  const empresa = document.getElementById("empresa").value;
+  const telefono = document.getElementById("telefono").value;
+  const correo = document.getElementById("correo").value;
 
-  // Configurar estilos
-  const styles = {
-    fontFamily: "Arial",
-    fontSize: 14,
-    fill: "#333333",
-    lineHeight: 1.5,
-  };
+  let signatureHTML = '<div class="flex items-start space-x-4">';
 
-  // Crear texto para la firma
-  const textLines = [
-    `${data.nombre}`,
-    `${data.cargo}`,
-    `Tel: ${data.telefono}`,
-    `Email: ${data.correo}`,
-    `${data.empresa}`,
-  ];
+  // Agregar logo si está marcado y se ha seleccionado una imagen
+  if (logoCheckbox.checked && logoInput.files.length > 0) {
+    const logoFile = logoInput.files[0];
+    const logoUrl = URL.createObjectURL(logoFile);
+    signatureHTML += `
+          <div class="flex-shrink-0">
+              <img src="${logoUrl}" alt="Logo" class="w-24 h-24 object-contain">
+          </div>
+      `;
+  }
 
-  // Crear y agregar cada línea de texto al canvas
-  let yPosition = 20;
-  textLines.forEach((line) => {
-    const text = new fabric.Text(line, {
-      left: 20,
-      top: yPosition,
-      ...styles,
-    });
-    canvas.add(text);
-    yPosition += 25;
-  });
+  // Agregar información de la firma
+  signatureHTML += `
+      <div class="flex-grow">
+          <p class="font-bold text-lg">${nombre}</p>
+          <p class="text-gray-600"><i class="fas fa-briefcase mr-2"></i>${cargo}</p>
+          <p class="text-gray-600"><i class="fas fa-building mr-2"></i>${empresa}</p>
+          <p class="text-gray-600"><i class="fas fa-phone mr-2"></i>${telefono}</p>
+          <p class="text-gray-600"><i class="fas fa-envelope mr-2"></i>${correo}</p>
+      </div>
+  </div>`;
 
-  // Convertir canvas a imagen
-  const signatureImage = canvas.toDataURL({
-    format: "png",
-    quality: 1,
-  });
-
-  // Mostrar la firma en el modal de vista previa
-  signaturePreview.innerHTML = `
-    <img src="${signatureImage}" alt="Firma generada" class="max-w-full" />
-  `;
+  document.getElementById("signaturePreview").innerHTML = signatureHTML;
+  document.getElementById("previewModal").classList.remove("hidden");
+  document.getElementById("previewModal").classList.add("flex");
 
   // Configurar el botón de descarga
-  downloadSignatureBtn.onclick = () => {
-    const link = document.createElement("a");
-    link.href = signatureImage;
-    link.download = "mi-firma.png";
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  };
+  downloadSignatureBtn.onclick = async () => {
+    const signatureElement = document.getElementById("signaturePreview");
 
-  // Mostrar el modal de vista previa
-  previewModal.classList.remove("hidden");
-  previewModal.classList.add("flex");
+    try {
+      // Crear un canvas temporal
+      const canvas = await html2canvas(signatureElement, {
+        backgroundColor: "#ffffff",
+        scale: 2, // Mayor calidad
+        logging: false,
+      });
+
+      // Convertir el canvas a una imagen
+      const image = canvas.toDataURL("image/png");
+
+      // Crear un enlace de descarga
+      const link = document.createElement("a");
+      link.href = image;
+      link.download = "mi-firma.png";
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    } catch (error) {
+      console.error("Error al generar la imagen:", error);
+      alert("Hubo un error al generar la imagen. Por favor, intenta de nuevo.");
+    }
+  };
 });
 
 // Cerrar el modal de vista previa
