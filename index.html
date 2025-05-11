@@ -11,6 +11,26 @@
     />
   </head>
   <body class="bg-gray-100">
+
+    <style>
+      .hidden {
+  display: none;
+}
+
+.visible {
+  display: block;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+    </style>
+
     <!-- Navegación -->
     <header class="bg-white shadow-md">
       <nav class="container mx-auto px-4 py-4">
@@ -249,6 +269,14 @@
         </div>
       </div>
     </footer>
+
+    <!-- Scroll to Top Button -->
+    <button
+      id="scrollToTopBtn"
+      class="fixed bottom-4 right-4 bg-blue-500 text-white p-3 rounded-full shadow-lg hidden hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-300"
+    >
+      ↑
+    </button>
 
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/fabric@latest/dist/index.min.js"></script>
