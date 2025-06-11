@@ -65,7 +65,11 @@ form.addEventListener("submit", async function (e) {
           <p class="font-bold text-lg">${nombre}</p>
           <p class="text-gray-600"><i class="fas fa-briefcase mr-2"></i>${cargo}</p>
           <p class="text-gray-600"><i class="fas fa-building mr-2"></i>${empresa}</p>
-          <p class="text-gray-600"><i class="fas fa-phone mr-2"></i>${telefono}</p>
+          ${
+            telefono
+              ? `<p class="text-gray-600"><i class="fas fa-phone mr-2"></i>${telefono}</p>`
+              : ""
+          }
           <p class="text-gray-600"><i class="fas fa-envelope mr-2"></i>${correo}</p>
       </div>
   </div>`;
