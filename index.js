@@ -45,8 +45,18 @@ form.addEventListener("submit", async function (e) {
   const empresa = document.getElementById("empresa").value;
   const telefono = document.getElementById("telefono").value;
   const correo = document.getElementById("correo").value;
+  const fuente = document.getElementById("fuente").value;
 
-  let signatureHTML = '<div class="flex items-start space-x-4">';
+  // Mapeo de fuentes
+  const fuentesMap = {
+    "sans-serif": "sans-serif, Arial, Helvetica",
+    "Segoe-Script": "'Segoe Script', cursive, sans-serif",
+    "Courier-New": "'Courier New', Courier, monospace",
+    "Times-New-Roman": "'Times New Roman', Times, serif",
+  };
+  const fontFamily = fuentesMap[fuente] || "sans-serif";
+
+  let signatureHTML = `<div class="flex items-start space-x-4" style="font-family: ${fontFamily};">`;
 
   // Agregar logo si está marcado y se ha seleccionado una imagen
   if (logoCheckbox.checked && logoInput.files.length > 0) {
