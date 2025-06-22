@@ -1,36 +1,53 @@
-# ✍️ Generador de Firmas de Correo en JavaScript
+<a href="https://skillicons.dev">
+  <img src="https://skillicons.dev/icons?i=html,css,tailwind,js&perline=15" />
+</a>
 
-¡Bienvenido al **Generador de Firmas de Correo Electrónico**! 🚀 
+# ✍️ Generador de Firmas de Correo / Email Signature Generator
 
-Este proyecto te permite crear de forma **rápida**, **fácil**, y **personalizable** firmas profesionales para tus correos electrónicos. Construido completamente en **JavaScript**, este generador es ideal para quienes desean destacar su identidad en el mundo digital sin preocuparse por procesos complicados.
+**ES | Español**  
+¡Bienvenido al **Generador de Firmas de Correo Electrónico**! 🚀  
+Este proyecto te permite crear de forma **rápida**, **fácil** y **personalizable** firmas profesionales para tus correos electrónicos. Construido completamente en **JavaScript**, este generador es ideal para quienes desean destacar su identidad digital sin complicaciones.
 
+**EN | English**  
+Welcome to the **Email Signature Generator**! 🚀  
+This project allows you to create **quick**, **easy**, and **customizable** professional email signatures. Built entirely in **JavaScript**, this generator is perfect for anyone looking to stand out digitally without the hassle.
 
-----
+---
 
+## 🛠️ Características / Features
 
-
-## 🛠️ Características
-
+**ES | Español**
 - 🔧 **Totalmente Personalizable**:
   - Cambia colores, fuentes, imágenes y más.
-  - Agrega tu información de contacto, logotipo, y enlaces de redes sociales.
-
+  - Agrega tu información de contacto, logotipo y redes sociales.
 - ⚡ **Interfaz Amigable**:
-  - Fácil de usar, incluso para usuarios sin experiencia técnica.
+  - Fácil de usar, incluso sin experiencia técnica.
   - Vista previa en tiempo real.
-
 - 📤 **Exportación Automática**:
-  - Genera el código HTML listo para usar en cualquier cliente de correo electrónico.
-  - Descarga tu firma como un archivo o simplemente cópiala en un clic.
-
+  - Genera código HTML listo para usar.
+  - Descarga o copia tu firma con un clic.
 - 🌐 **Compatible con Todas las Plataformas**:
-  - Funciona con Gmail, Outlook, Thunderbird, y otros servicios de correo populares.
+  - Funciona con Gmail, Outlook, Thunderbird y más.
 
+**EN | English**
+- 🔧 **Fully Customizable**:
+  - Change colors, fonts, images, and more.
+  - Add your contact info, logo, and social media links.
+- ⚡ **User-Friendly Interface**:
+  - Easy to use, even for non-technical users.
+  - Real-time preview.
+- 📤 **Automatic Export**:
+  - Generates ready-to-use HTML code.
+  - Download or copy your signature with one click.
+- 🌐 **Cross-Platform Compatibility**:
+  - Works with Gmail, Outlook, Thunderbird, and more.
 
-----
+---
 
+## 🚀 Demo en Vivo / Live Demo
 
-## 🚀 Demo en Vivo
-
+**ES | Español**  
 ¡Próximamente! Estaremos integrando una demo interactiva para que experimentes todo el potencial del generador antes de implementarlo.
 
+**EN | English**  
+Coming soon! We’ll be launching an interactive demo so you can explore the full potential of the generator before using it.

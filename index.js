@@ -65,8 +65,18 @@ form.addEventListener("submit", async function (e) {
   const empresa = document.getElementById("empresa").value;
   const telefono = document.getElementById("telefono").value;
   const correo = document.getElementById("correo").value;
+  const fuente = document.getElementById("fuente").value;
 
-  let signatureHTML = '<div class="flex items-start space-x-4">';
+  // Mapeo de fuentes
+  const fuentesMap = {
+    "sans-serif": "sans-serif, Arial, Helvetica",
+    "Segoe-Script": "'Segoe Script', cursive, sans-serif",
+    "Courier-New": "'Courier New', Courier, monospace",
+    "Times-New-Roman": "'Times New Roman', Times, serif",
+  };
+  const fontFamily = fuentesMap[fuente] || "sans-serif";
+
+  let signatureHTML = `<div class="flex items-start space-x-4" style="font-family: ${fontFamily};">`;
 
   // Agregar logo si está marcado y se ha seleccionado una imagen
   if (logoCheckbox.checked && logoInput.files.length > 0) {
@@ -85,7 +95,11 @@ form.addEventListener("submit", async function (e) {
           <p class="font-bold text-lg">${nombre}</p>
           <p class="text-gray-600"><i class="fas fa-briefcase mr-2"></i>${cargo}</p>
           <p class="text-gray-600"><i class="fas fa-building mr-2"></i>${empresa}</p>
-          <p class="text-gray-600"><i class="fas fa-phone mr-2"></i>${telefono}</p>
+          ${
+            telefono
+              ? `<p class="text-gray-600"><i class="fas fa-phone mr-2"></i>${telefono}</p>`
+              : ""
+          }
           <p class="text-gray-600"><i class="fas fa-envelope mr-2"></i>${correo}</p>
       </div>
   </div>`;
