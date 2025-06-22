@@ -19,6 +19,7 @@ const canvas = new fabric.Canvas("signatureCanvas", {
 const logoCheckbox = document.getElementById("logoCheckbox");
 const logoInputContainer = document.getElementById("logoInputContainer");
 const logoInput = document.getElementById("logoInput");
+const scrollToTopButton = document.getElementById("scrollToTopBtn");
 
 logoCheckbox.addEventListener("change", function () {
   logoInputContainer.classList.toggle("hidden", !this.checked);
@@ -35,6 +36,25 @@ openModalBtn.addEventListener("click", () => {
 closeModalBtn.addEventListener("click", () => {
   modal.classList.add("hidden");
   modal.classList.remove("flex");
+});
+
+window.addEventListener("scroll", () => {
+  if (window.scrollY > 200) {
+    // Cambia el valor según cuándo quieras que aparezca
+    scrollToTopButton.classList.remove("hidden");
+    scrollToTopButton.classList.add("visible");
+  } else {
+    scrollToTopButton.classList.remove("visible");
+    scrollToTopButton.classList.add("hidden");
+  }
+});
+
+// Función para ir arriba (ya existente en tu archivo index.js)
+scrollToTopButton.addEventListener("click", () => {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth", // Desplazamiento suave
+  });
 });
 
 form.addEventListener("submit", async function (e) {
