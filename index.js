@@ -69,12 +69,17 @@ form.addEventListener("submit", async function (e) {
 
   // Mapeo de fuentes
   const fuentesMap = {
-    "sans-serif": "sans-serif, Arial, Helvetica",
+    Arial: "Arial, Helvetica, sans-serif",
     "Segoe-Script": "'Segoe Script', cursive, sans-serif",
     "Courier-New": "'Courier New', Courier, monospace",
     "Times-New-Roman": "'Times New Roman', Times, serif",
+    Roboto: "'Roboto', Arial, sans-serif",
+    Pacifico: "'Pacifico', cursive",
+    Montserrat: "'Montserrat', Arial, sans-serif",
+    "Indie-Flower": "'Indie Flower', cursive",
+    Oswald: "'Oswald', Arial, sans-serif",
   };
-  const fontFamily = fuentesMap[fuente] || "sans-serif";
+  const fontFamily = fuentesMap[fuente] || "Arial, Helvetica, sans-serif";
 
   let signatureHTML = `<div class="flex items-start space-x-4" style="font-family: ${fontFamily};">`;
 
